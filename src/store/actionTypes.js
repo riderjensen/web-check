@@ -1,0 +1,1 @@
+export const ADD_NEW_TRACKER = "ADD_NEW_TRACKER"
