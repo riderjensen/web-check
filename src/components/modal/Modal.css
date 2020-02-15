@@ -1,0 +1,88 @@
+.overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay .modal {
+    z-index: 2;
+    background-color: #fff;
+    height: auto;
+    max-height: 80vh;
+    border-radius: 8px;
+    padding: 20px;
+    width: 60vw;
+    overflow: scroll;
+}
+
+.overlay .modal hr {
+    display: block; 
+    height: 1px;
+    border: 0; 
+    border-top: 1px solid lightgray;
+    margin: 1em 0; 
+    padding: 0;
+}
+
+.overlay .modal .input-group {
+    max-width: 80%;
+    margin: 10px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.overlay .modal .input-group label {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    color: gray;
+    text-align: left;
+    margin-left: 5px;
+}
+
+.overlay .modal .input-group input {
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.overlay .modal .input-group button {
+    cursor: pointer;
+    color: #fff;
+    background-color: #545b62;
+    border-color: #4e555b;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+@media screen and (max-width: 768px) {
+    .overlay .modal {
+        width: 90vw;
+    }
+}
