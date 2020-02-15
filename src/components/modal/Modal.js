@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import './Modal.css'
 
@@ -10,7 +12,7 @@ class Modal extends Component {
     }
 
     state = {
-
+        parseVarsNum: []
     }
 
     handleChange(event) {
@@ -21,6 +23,23 @@ class Modal extends Component {
 
     preventClose = event => {
         event.stopPropagation();
+    }
+
+    componentDidMount() {
+        this.addTrackerCat()
+    }
+
+    addTrackerCat = () => {
+        const myIntArray = this.state.parseVarsNum;
+        const date = new Date();
+        const rightNow = date.getTime();
+        myIntArray.push({
+            id: rightNow,
+            filter: ''
+        })
+        this.setState({
+            parseVarsNum: myIntArray
+        })
     }
 
     render () {
@@ -41,9 +60,19 @@ class Modal extends Component {
                         <input type="number" name="timeout" placeholder="10"></input>
                     </div>
                     <hr />
-                    <div>
-                        
+                    <div className="filters">
+                        <p>Filters to be placed based on the website response</p>
+                        {this.state.parseVarsNum.map((item, i) => (
+                        <div className="input-group" key={item.id}>
+                            <select>
+                                <option value="includes">Includes</option>
+                                <option value="!includes">Doesnt Not Include</option>
+                            </select>
+                            <input type="number" name={i} placeholder="Key phrase"></input>
+                        </div>
+                        ))}
                     </div>
+                    <FontAwesomeIcon style={{color: '#282c34'}} icon={faPlusCircle} onClick={this.addTrackerCat} />
                     <div className="input-group">
                         <button>Submit</button>
                     </div>
