@@ -27,6 +27,12 @@
     color: gray;
 }
 
+.card .error {
+    position: absolute;
+    top: 0;
+    width: 80%;
+}
+
 .card button {
     margin-left: 5px;
 }

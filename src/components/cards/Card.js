@@ -56,6 +56,9 @@ class Card extends Component {
                         <div className="delete">
                             <FontAwesomeIcon icon={faTimes} onClick={this.toggleDelete} />
                         </div>
+                        {this.props.error ? <div className="error">
+                            <p>There was an error getting your request</p>
+                        </div> : null}
                     </article>
                 }
                 {this.state.showModal ? <Modal editState={this.props} closeModal={this.closeModal} /> : null}
