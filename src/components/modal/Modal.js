@@ -13,7 +13,8 @@ class Modal extends Component {
         url: '',
         timeout: '',
         indicators: [],
-        edit: false
+        edit: false,
+        achieved: false
     }
 
     componentDidMount() {
