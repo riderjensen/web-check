@@ -9,6 +9,16 @@
     position: relative;
 }
 
+.card .title {
+    margin-bottom: 0;
+}
+
+.card p {
+    margin-top: 0;
+    font-size: 12px;
+    color: gray;
+}
+
 .card button {
     margin-left: 5px;
 }

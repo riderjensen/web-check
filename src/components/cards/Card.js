@@ -47,7 +47,7 @@ class Card extends Component {
                     </article>
                 : 
                     <article>
-                        <p className="title">{this.props.title}</p>
+                        <h5 className="title">{this.props.title}</h5>
                         <p>Refresh time: {this.props.timeout}</p>
                         <a href={this.props.url} target="_blank" rel="noopener noreferrer">Visit</a>
                         <div className="edit">
