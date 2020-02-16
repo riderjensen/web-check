@@ -6,4 +6,28 @@
     background-color: #fff;
     border-radius: 4px;
     min-height: 20px;
+    position: relative;
+}
+
+.card button {
+    margin-left: 5px;
+}
+
+.card button.danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.card .edit, .card .delete {
+    position: absolute;
+    top: 5px;
+    color: darkgrey;
+}
+
+.card .edit {
+    left: 5px;
+}
+
+.card .delete {
+    right: 5px;
 }
