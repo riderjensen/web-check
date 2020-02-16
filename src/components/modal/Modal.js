@@ -14,7 +14,8 @@ class Modal extends Component {
         timeout: '',
         indicators: [],
         edit: false,
-        achieved: false
+        achieved: false,
+        error: false
     }
 
     componentDidMount() {

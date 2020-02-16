@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as actionTypes from '../actionTypes';
 
 export const getAllTrackers = _ => {
@@ -64,4 +65,10 @@ const addNewTrackerDispatching = payload => ({
 function setCookie(trackers) {
     const trackersString = JSON.stringify(trackers);
     localStorage.setItem('webCheck', trackersString)
+}
+
+function kickOffPolling() {
+    axios.get('https://riderjensen.com').then(resp => {
+        console.log(resp)
+    }).catch(err => console.log(err))
 }
