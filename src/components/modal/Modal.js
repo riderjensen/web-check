@@ -54,6 +54,7 @@ class Modal extends Component {
 
     submit = () => {
         this.props.addCard(this.state)
+        this.props.closeModal()
     }
 
     render () {

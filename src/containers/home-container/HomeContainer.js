@@ -6,6 +6,8 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../components/cards/Card';
 import Modal from '../../components/modal/Modal';
 
+import * as actions from '../../store/actions/index';
+
 import './HomeContainer.css';
 
 class Home extends Component {
@@ -13,6 +15,10 @@ class Home extends Component {
 
     state = {
         showModal: false
+    }
+
+    componentDidMount () {
+        this.props.getAllTrackers()
     }
 
     openModal = () => {
@@ -50,4 +56,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(Home);
+const mapDispatchToProps = dispatch => {
+    return {
+        getAllTrackers: _ => dispatch(actions.getAllTrackers())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
