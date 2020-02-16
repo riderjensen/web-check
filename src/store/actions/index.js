@@ -4,7 +4,6 @@ export const getAllTrackers = _ => {
     return (dispatch) => {
         const trackerString = localStorage.getItem('webCheck')
         const trackers = JSON.parse(trackerString)
-        console.log(trackers);
         if (trackers != null) {
             dispatch(addNewTrackerDispatching(trackers))
         }
@@ -14,18 +13,17 @@ export const getAllTrackers = _ => {
 export const addNewTracker = trackerObj => {
     return (dispatch, getState) => {
         const currentState = getState();
-        const trackers = [...currentState.index.trackers];
+        const trackersCopy = [...currentState.index.trackers];
 
         const date = new Date();
         const now = date.getTime()
         trackerObj.id = now;
-        trackers.push(trackerObj)
+        trackersCopy.push(trackerObj)
 
         // add trackers object to local storage here
-        const trackersString = JSON.stringify(trackers);
-        localStorage.setItem('webCheck', trackersString)
+        setCookie(trackersCopy)
 
-        dispatch(addNewTrackerDispatching(trackers))
+        dispatch(addNewTrackerDispatching(trackersCopy))
     }
 }
 
@@ -38,6 +36,8 @@ export const deleteTracker = trackerId => {
                 trackersCopy.splice(i, 1)
             }
         });
+        // add trackers object to local storage here
+        setCookie(trackersCopy)
         dispatch(addNewTrackerDispatching(trackersCopy))
     }
 }
@@ -46,3 +46,8 @@ const addNewTrackerDispatching = payload => ({
     type: actionTypes.ADD_NEW_TRACKER,
     payload
 })
+
+function setCookie(trackers) {
+    const trackersString = JSON.stringify(trackers);
+    localStorage.setItem('webCheck', trackersString)
+}
