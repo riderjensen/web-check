@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import Modal from '../modal/Modal';
+
 import * as actions from '../../store/actions/index';
 
 import './Card.css'
@@ -10,7 +12,8 @@ import './Card.css'
 class Card extends Component {
 
     state = {
-        delete: false
+        delete: false,
+        showModal: false
     }
 
     deleteTracker = _ => {
@@ -19,6 +22,18 @@ class Card extends Component {
 
     toggleDelete = _ => {
         this.setState({delete: !this.state.delete})
+    }
+
+    showModal = _ => {
+        this.setState({
+            showModal: true
+        })
+    }
+
+    closeModal = _ => {
+        this.setState({
+            showModal: false
+        })
     }
 
     render () {
@@ -36,13 +51,14 @@ class Card extends Component {
                         <p>Refresh time: {this.props.timeout}</p>
                         <a href={this.props.url} target="_blank" rel="noopener noreferrer">Visit</a>
                         <div className="edit">
-                            <FontAwesomeIcon icon={faPencilAlt} />
+                            <FontAwesomeIcon icon={faPencilAlt} onClick={this.showModal} />
                         </div>
                         <div className="delete">
                             <FontAwesomeIcon icon={faTimes} onClick={this.toggleDelete} />
                         </div>
                     </article>
                 }
+                {this.state.showModal ? <Modal editState={this.props} closeModal={this.closeModal} /> : null}
             </div> 
         )
     }

@@ -42,6 +42,20 @@ export const deleteTracker = trackerId => {
     }
 }
 
+export const editTracker = trackerObj => {
+    return (dispatch, getState) => {
+        const currentState = getState();
+        const trackersCopy = [...currentState.index.trackers];
+        trackersCopy.forEach((tracker, i) => {
+            if (trackerObj.id === tracker.id) {
+                trackersCopy[i] = trackerObj
+            }
+        })
+        setCookie(trackersCopy)
+        dispatch(addNewTrackerDispatching(trackersCopy))
+    }
+}
+
 const addNewTrackerDispatching = payload => ({
     type: actionTypes.ADD_NEW_TRACKER,
     payload
