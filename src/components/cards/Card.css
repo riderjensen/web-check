@@ -9,6 +9,14 @@
     position: relative;
 }
 
+.card.unachieved {
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.5);
+}
+
+.card.achieved {
+    box-shadow: 0 0 0 0.2rem rgba(40,167,69,.5);
+}
+
 .card .title {
     margin-bottom: 0;
 }

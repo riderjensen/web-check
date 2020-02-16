@@ -38,7 +38,7 @@ class Card extends Component {
 
     render () {
         return (
-            <div className="card">
+            <div className={this.props.achieved ? "card achieved" : "card unachieved"}>
                 {this.state.delete ? 
                     <article>
                         <p>Are you sure you want to delete this item?</p>
