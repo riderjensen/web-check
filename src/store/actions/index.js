@@ -6,7 +6,8 @@ export const getAllTrackers = _ => {
         const trackerString = localStorage.getItem('webCheck')
         const trackers = JSON.parse(trackerString)
         if (trackers != null) {
-            dispatch(addNewTrackerDispatching(trackers))
+            // dispatch(addNewTrackerDispatching(trackers))
+            kickOffPolling(trackers, dispatch)
         }
     }
 }
@@ -67,8 +68,28 @@ function setCookie(trackers) {
     localStorage.setItem('webCheck', trackersString)
 }
 
-function kickOffPolling() {
-    axios.get('https://riderjensen.com').then(resp => {
-        console.log(resp)
-    }).catch(err => console.log(err))
+// kick off polling for each object in the state
+function kickOffPolling(trackers, dispatch) {
+    trackers.forEach((tracker, i) => {
+        const url = encodeURIComponent(tracker.url)
+        axios.get(`https://cors-accesser.herokuapp.com/?url=${url}`).then(resp => {
+            tracker.error = false
+            tracker.achieved = false
+            tracker.indicators.forEach(indicator => {
+                if(indicator.filter === 'includes') {
+                    if(resp.data.includes(indicator.phrase)) {
+                        tracker.achieved = true
+                    }
+                } else if (indicator.filter === '!includes') {
+                    if(!resp.data.includes(indicator.phrase)) {
+                        tracker.achieved = true
+                    }
+                }
+            })
+            dispatch(addNewTrackerDispatching(trackers))
+        }).catch(err => {
+            tracker.error = true
+            dispatch(addNewTrackerDispatching(trackers))
+        })
+    })
 }
