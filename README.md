@@ -6,3 +6,4 @@ Allow people to create alerts for themselves looking for keywords on webpages
 
 * Add in automatic polling based on timeout
 * Fixing the logic behind multiple indicators
+* Be able to remove indicators

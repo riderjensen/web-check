@@ -74,18 +74,20 @@ function kickOffPolling(trackers, dispatch) {
         const url = encodeURIComponent(tracker.url)
         axios.get(`https://cors-accesser.herokuapp.com/?url=${url}`).then(resp => {
             tracker.error = false
-            tracker.achieved = false
-            tracker.indicators.forEach(indicator => {
+            tracker.achieved = true
+            for (let indicator of tracker.indicators) {
                 if(indicator.filter === 'includes') {
-                    if(resp.data.includes(indicator.phrase)) {
-                        tracker.achieved = true
+                    if(!resp.data.includes(indicator.phrase)) {
+                        tracker.achieved = false
+                        break
                     }
                 } else if (indicator.filter === '!includes') {
-                    if(!resp.data.includes(indicator.phrase)) {
-                        tracker.achieved = true
+                    if(resp.data.includes(indicator.phrase)) {
+                        tracker.achieved = false
+                        break
                     }
                 }
-            })
+            }
             dispatch(addNewTrackerDispatching(trackers))
         }).catch(err => {
             tracker.error = true
