@@ -36,6 +36,7 @@ class Home extends Component {
     render() {
         return (
             <div className="home-container">
+                <p style={{color: '#fff', maxWidth: '1200px', margin: '15px auto'}}>This application allows people to create alerts for themselves looking for keywords on webpages. Not all webpages work, some webpages that often encounter scrapers will refer a 503 error. A red border indicates that the key indicators were not met. A green border means key indicators were met. If we have a problem accessing a URL, an error will appear at the top of the card.</p>
                 <div className="card-container">
                 {this.props.trackers.map(track => {
                     return <Card {...track} key={track.id} />
